@@ -326,8 +326,7 @@ class IRSDK{
      * @param null $Msg 拒绝时的理由
      * @return mixed 失败返回-1
      */
-    public function setGroupRequest($Group,$QQ,$inType,$agree=true,$Msg=null)
-    {
+    public function setGroupRequest($Group,$QQ,$inType,$agree=true,$Msg=null){
         $sendArr['Func'] = __FUNCTION__;
         $sendArr['Group'] = $Group;
         $sendArr['Msg'] = $Msg;
@@ -344,8 +343,7 @@ class IRSDK{
      * @param $content
      * @return mixed 失败返回-1
      */
-    public function setGroupNotice($Group,$title,$content)
-    {
+    public function setGroupNotice($Group,$title,$content){
         $sendArr['Func'] = __FUNCTION__;
         $sendArr['Group'] = $Group;
         $sendArr['Msg'] = $title;
@@ -361,8 +359,7 @@ class IRSDK{
      * @param $content
      * @return mixed 失败返回-1
      */
-    public function setGroupHomework($Group,$homeworkName,$title,$content)
-    {
+    public function setGroupHomework($Group,$homeworkName,$title,$content){
         $sendArr['Func'] = __FUNCTION__;
         $sendArr['Group'] = $Group;
         $sendArr['Msg'] = $homeworkName;
