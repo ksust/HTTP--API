@@ -13,7 +13,7 @@
 
 
 class CQSDK{
-    //IRQQ全局配置
+    //全局配置
     public static $serverURL='http://127.0.0.1:8090';
     public static $serverVerfy=true; //是否启用验证
     public static $serverKey='123';
