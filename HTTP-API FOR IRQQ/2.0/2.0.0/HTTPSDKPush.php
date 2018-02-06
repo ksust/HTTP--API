@@ -56,7 +56,7 @@ class HTTPSDKPush{
     ];
 
     /**
-     * IRSDK constructor.选择传入参数
+     * HTTPSDKPush constructor.选择传入参数
      * @param null $URL 推送地址及端口
      * @param null $serverKey 验证key
      * @param null $serverSecret 验证secret
@@ -64,10 +64,10 @@ class HTTPSDKPush{
      */
     public function __construct($URL=null,$serverKey=null,$serverSecret=null,$serverVerfy=null)
     {
-        IRSDK::$serverURL=$URL==null?IRSDK::$serverURL:$URL;
-        IRSDK::$serverVerfy=$serverVerfy==null?IRSDK::$serverVerfy:$serverVerfy;
-        IRSDK::$serverKey=$serverKey==null?IRSDK::$serverKey:$serverKey;
-        IRSDK::$serverSecret=$serverSecret==null?IRSDK::$serverSecret:$serverSecret;
+        HTTPSDKPush::$serverURL=$URL==null?HTTPSDKPush::$serverURL:$URL;
+        HTTPSDKPush::$serverVerfy=$serverVerfy==null?HTTPSDKPush::$serverVerfy:$serverVerfy;
+        HTTPSDKPush::$serverKey=$serverKey==null?HTTPSDKPush::$serverKey:$serverKey;
+        HTTPSDKPush::$serverSecret=$serverSecret==null?HTTPSDKPush::$serverSecret:$serverSecret;
     }
     /**
      * 与主机动态交互：发送消息与获得结果
@@ -95,9 +95,9 @@ class HTTPSDKPush{
     private function getServerVerifyCode(){
         //加密验证方式
         $verify=[];
-        if(IRSDK::$serverVerfy){
+        if(HTTPSDKPush::$serverVerfy){
             $verify['time']=time();
-            $verify['verify']=md5(IRSDK::$serverKey.$verify['time'].IRSDK::$serverSecret);
+            $verify['verify']=md5(HTTPSDKPush::$serverKey.$verify['time'].HTTPSDKPush::$serverSecret);
         }
         return $verify;
     }
