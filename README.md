@@ -296,20 +296,53 @@ public class MsgForwardDemo {
 
 ## SDK参考手册
 ---
-文档更新中...    
 
-| 方法 | 说明 | 返回值 | 支持平台 | 参数1（从左到右） | 参数2 | 参数3  | 参数4 |
-| ----------- | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | ----------- |
-| httpGet(String msg) | 提交返回模型，PHP SDK无需传入参数 |  HTTPSDK对象 | IR/CQ |获取到的原始消息（RequestBody）|-|-|-|
-| webSocket(String msg) | 提交返回（webSocket）模型，传入获取到的原始消息 |  HTTPSDK对象 | IR/CQ |获取到的原始消息（RequestBody）|-|-|-|
-| httpPush(String URL, String key, String secret) | HTTP推送模型 |  HTTPSDK对象 | IR/CQ |推送地址及端口，如http://127.0.0.1:8888|验证key 为空或null则表示不加密|验证secret 为空或null则表示不加密|-|
-| msgForwardPush(String qq, String code)| 消息转发推送模型 |  HTTPSDK对象 | IR/CQ |机器人QQ|该机器人QQ的授权码，统一管理平台：http://work.ksust.com|-|-|
-| getMsg() | 获取接收到的消息（结构化） |  JSON/MessageGet对象 | IR/CQ |-|-|-|-|
-| isCallback() | 当前消息体是否为插件反馈（用于提交返回模型下获取群列表等） |  boolean | IR/CQ |-|-|-|-|
-| setCallbackSend(boolean callbackSend)| 是否在插件反馈情况下返回消息（提交返回），默认 |  - | IR/CQ |true/false|-|-|-|
-| toJsonString() | 构造返回的JSON String格式并清除当前MessageBackList。同时重置已发送消息（清空），仅针对于提交返回 |  String | IR/CQ |-|-|-|-|
-| sendPrivateMsg(String qq, String msg, int structureType, int subType) | 发送私聊消息，默认非卡片形式 |  int | IR/CQ |目标QQ，好友|消息内容|消息结构类型 0普通消息，1 XML消息，2 JSON消息默认0|XML、JSON消息发送方式下：0为普通（默认），1为匿名（需要群开启），默认0|
-| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| 方法 | 说明 | 返回值 | 支持平台 | 参数1（从左到右） | 参数2 | 参数3  | 参数4 | 参数5 |
+| ----------- | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | ----------- | ----------- |
+| httpGet(String msg) | 提交返回模型，PHP SDK无需传入参数 |  HTTPSDK对象 | IR/CQ |获取到的原始消息（RequestBody）|-|-|-|-|
+| webSocket(String msg) | 提交返回（webSocket）模型，传入获取到的原始消息 |  HTTPSDK对象 | IR/CQ |获取到的原始消息（RequestBody）|-|-|-|-|
+| httpPush(String URL, String key, String secret) | HTTP推送模型 |  HTTPSDK对象 | IR/CQ |推送地址及端口，如http://127.0.0.1:8888|验证key 为空或null则表示不加密|验证secret 为空或null则表示不加密|-|-|
+| msgForwardPush(String qq, String code)| 消息转发推送模型 |  HTTPSDK对象 | IR/CQ |机器人QQ|该机器人QQ的授权码，统一管理平台：http://work.ksust.com|-|-|-|
+| getMsg() | 获取接收到的消息（结构化） |  JSON/MessageGet对象 | IR/CQ |-|-|-|-|-|
+| isCallback() | 当前消息体是否为插件反馈（用于提交返回模型下获取群列表等） |  boolean | IR/CQ |-|-|-|-|-|
+| setCallbackSend(boolean callbackSend)| 是否在插件反馈情况下返回消息（提交返回），默认 |  - | IR/CQ |true/false|-|-|-|-|
+| toJsonString() | 构造返回的JSON String格式并清除当前MessageBackList。同时重置已发送消息（清空），仅针对于提交返回 |  String | IR/CQ |-|-|-|-|-|
+| sendPrivateMsg(String qq, String msg, int structureType, int subType) | 发送私聊消息，默认非卡片形式 |  int | IR/CQ |目标QQ，好友|消息内容|消息结构类型 0普通消息，1 XML消息，2 JSON消息默认0|XML、JSON消息发送方式下：0为普通（默认），1为匿名（需要群开启），默认0|-|
+| sendGroupMsg(String groupId, String msg, int structureType, int subType) | 发送群聊消息，默认非卡片形式 | int | IR/CQ |群号|消息内容|消息结构类型 0普通消息，1 XML消息，2 JSON消息默认0|XML、JSON消息发送方式下：0为普通（默认），1为匿名（需要群开启），默认0|-|
+| sendDiscussMsg(String discuss, String msg, int structureType, int subType) | 发送讨论组消息，默认非卡片形式 | int | IR/CQ |讨论组id|消息内容|消息结构类型 0普通消息，1 XML消息，2 JSON消息默认0|XML、JSON消息发送方式下：0为普通（默认），1为匿名（需要群开启），默认0|-|
+| sendLike(String qq, int count) | 点赞 | int | IR/CQ |对象QQ|点赞数量，一人最多一天10|-|-|-|
+| sendShake(String qq) | 抖动窗口 | int | IR/CQ |对象QQ|-|-|-|-|
+| setGroupBan(String groupId, String qq, int time) | 群禁言(管理) | int | IR/CQ |群号|禁言QQ，为null则禁言全群|禁言时间，单位秒，至少10秒。0为解除禁言|-|-|
+| setGroupQuit(String groupId) | 主动退群 | int | IR/CQ |群号|-|-|-|-|
+| setGroupKick(String groupId, String qq, boolean neverIn) | 踢人（管理） | int | IR/CQ |群号|对象QQ|是否不允许再加群|-|-|
+| setGroupCard(String groupId, String qq, String card) | 设置群名片 | int | IR/CQ |群号|对象QQ|群名片|-|-|
+| setGroupAdmin(String groupId, String qq, boolean become) | 设置管理员（群主） | int | IR/CQ |群号|对象QQ|True为设置，false为取消|-|-|
+| handleGroupIn(String groupId, String qq, boolean agree, int type, String msg) | 处理加群事件，是否同意 | int | IR/CQ|群号|对象QQ|是否同意加群|213请求入群 214我被邀请加入某群 215某人被邀请加入群 。为0则不管哪种|消息，当拒绝时发送的消息|
+| handleFriendAdd(String qq, boolean agree, String msg) | 是否同意被加好友 | int | IR/CQ |对象QQ|是否同意|当拒绝时发送的消息|-|-|
+| addGroupNotice(String groupId, String title, String content) | 发群公告（管理） | int | IR/CQ |群号|公告标题|内容|-|-|
+| addGroupHomework(String groupId, String homewordName, String title, String content) |  发群作业（管理）。注意作业名和标题中不能含有#号 | int | IR/CQ |群号|作业名|标题|内容|-|
+| joinGroup(String groupId, String reason) | 主动申请加入群 | int | IR/CQ |群号|加群理由|-|-|-|
+| disGroupCreate(String disName, List<String> qqList) | 创建讨论组 | String | IR/CQ |讨论组名。并作为创建后第一条消息发送（激活消息）|需要添加到讨论组的QQ号列表|-|-|-|
+| disGroupQuit(String disGroupId) | 退出讨论组 | int | IR/CQ |讨论组ID|-|-|-|-|
+| disGroupKick(String disGroupId, List<String> qqList) | 踢出讨论组 | int | IR/CQ |讨论组ID|踢提出的QQ号列表|-|-|-|
+| disGroupInvite(String disGrouId, List<String> qqList) | 添加讨论组成员 | int | IR/CQ |讨论组号|欲添加的QQ号列表|-|-|-|
+| groupInvite(String groupId, String qq) | 邀请QQ入群（管理+群员） | int | IR/CQ |群号|QQ|-|-|-|
+| getStrangerInfo(String qq) | 获取陌生人信息 isCallback情况下返回有数据的，否则返回空对象 | Stranger/- | IR/CQ |QQ|-|-|-|-|
+| getLoginQQ() | 获取当前登陆的QQ isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |-|-|-|-|-|
+| getGroupList() | 获取当前QQ群列表，JSON字符串 isCallback情况下返回有数据的，否则返回空对象 | JSON字符串/- | IR/CQ |-|-|-|-|-|
+| getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR/CQ |-|-|-|-|-|
+| getGroupMemberList(String groupId) | 获取群成员列表 isCallback情况下返回有数据的，否则返回空对象 | 群成员列表/- | IR/CQ |群号|-|-|-|-|
+| getGroupNotice(String groupId) | 获取群公告 isCallback情况下返回有数据的，否则返回空对象 | Notice/- | IR/CQ |群号|-|-|-|-|
+| getLikeCount(String qq) | 获取对象QQ赞数量 isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |对象QQ|-|-|-|-|
+| getDisGroupList() | 获取讨论组列表（IRQQ框架获取为空） isCallback情况下返回有数据的，否则返回空对象 | DisGroup/- | IR/CQ |-|-|-|-|-|
+| getQQLevel(String qq) | 获取QQ等级 | int | IR/CQ |QQ|-|-|-|-|
+| getGroupMemberCard(String groupId, String qq) | 获取群成员名片 | 群名片 | IR/CQ |群号|QQ|-|-|-|
+| getQQIsOline(String qq) | 查询QQ是否在线 | 是否在线 | IR/CQ |QQ|-|-|-|-|
+| getQQIsFriend(String qq) | 查询QQ是否好友 | 是否好友 | IR/CQ |QQ|-|-|-|-|
+| getQQRobotInfo() | 获取当前QQ机器人状态信息（如是否在线） | 结构信息 | IR/CQ |-|-|-|-|-|
+| setInputStatus(String qq) | 置正在输入 状态，发送消息撤销 | int | IR/CQ |QQ|-|-|-|-|
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+
 
 ------
 
@@ -479,7 +512,54 @@ public class MsgForwardDemo {
 ## 插件界面及使用引导
 ---
 文档更新中...
+### 用户使用流程引导
+对于使用本插件的用户来说，除了第一次配置插件外，几乎所有操作均在管理平台上进行（包括安装应用、查看机器人状态等）。   
+对于新用户，步骤如下：   
+>1.注册平台账户（用于线上管理、安装）   
+* 至管理平台注册用户（用户名最好为英文）[http://work.ksust.com](http://work.ksust.com)   
+* 加入用户QQ群（用于应用审核等）：（QQ群，用户加入）537419179    
+>2.安装并启用插件（CleverQQ）
+* 首先你需要至少登录成功一个机器人QQ。   
+* 对于CleverQQ，直接下载 HTTP-API.IR.DLL放入插件目录（plugin），然后启用插件即可。
+* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CleverQQ。下载地址：[CleverQQ-HTTP-API](http://)
+>3.重启机器人框架
+* 上一步过后，请记得重启机器人，以获取授权码、载入新配置等。
+>4.打开插件设置进行配置
+* 上一步重启机器人并至少登录成功一个机器人QQ后，打开HTTP-API设置，按下图顺序操作；绑定时输入你在平台注册的**用户名和密码**。   
+![开启服务](./resources/setting1.png)
+![绑定账号](./resources/setting2.png)
+![保存配置](./resources/setting3.png)
+* 插件配置完成后，登录管理平台，进入授权管理，此时可以看到你绑定的机器人QQ。      
+![我的授权](./resources/verifyList.png)
+>5.主人QQ绑定
+* 在平台右上角选择绑定主人，选择主人QQ，输入你加入用户QQ群的QQ号（机器人不用加群），点击提交。      
+![绑定主人](./resources/bindMaster.png)
+* 在用户QQ群中发送 验证主人 即可成功绑定。群内发送帮助可获取帮助信息。
+>6.安装应用及应用审核
+* 进入应用商店，点击一款应用进行在线安装。   
+![应用商店](./resources/appList.png)
+![应用安装1](./resources/appInstall1.png)
+![应用安装2](./resources/appInstall2.png)
+* 在用户QQ群中发送 应用审核 即可自动审核应用。   
+![我的应用](./resources/myAppList.png)
+* 等待1分钟或者进入插件设置，点击更新配置后保存，即可看到安装的应用已经成功运行。   
+![应用测试](./resources/appTest.png)
+>以上流程为新用户完整流程，尽量描述详细，具体执行过程1-2分钟即可完成；对于老用户，则直接绑定平台账号即可。
 
+### 开发者相关配置
+对于开发者，主要包含开发、发布两个流程。下面主要介绍开发过程中的相关配置，更多请加入开发群了解，开发群也有免费视频培训。   
+>开启开发者模式
+* 开启开发者模式
+>提交返回配置
+* 提交返回一般只需填提交URL即可，URL填HTTP协议地址（如http://127.0.0.1），或者填webSocket地址（如ws://127.0.0.1:2346），点击测试即可查看测试结果（测试发起的GET请求）。   
+>主动推送配置
+* 主动提交一般只需开启服务，配置监听端口即可。   
+>定时任务配置
+* 定时任务只需开启服务并添加任务URL（只能是HTTP://XXX），填写任务间隔（秒）即可，任务间隔最小为1秒。   
+>发布应用到平台
+* 应用发布是针对已经认证开发者的开发者。可以在平台上发布开发的应用，用户可很方便地通过线上安装运行你的应用，另外开发者也可以通过这种方式获得收入（应用安装收费）。详情请加入开发群。
 
 ------
+交流群：（QQ群，用户加入）537419179   
+开发群：（QQ群，开发者加入）598629636   
 **管理平台：http://work.ksust.com**
