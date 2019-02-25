@@ -13,7 +13,17 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 **注：以下表格描述中CleverQQ简称IR，CoolQ（酷Q）简称CQ**   
 交流群：（QQ群，用户加入）537419179   
 开发群：（QQ群，开发者加入）598629636   
-管理平台：http://work.ksust.com
+管理平台：http://work.ksust.com   
+
+### 版本分布   
+|名称|最新版本|状态|备注|   
+|----|----|----|----|   
+|HTTP-API For CleverQQ|2.2.2|已发布|HTTP-API CleverQQ DLL插件|   
+|HTTP-API For CoolQ|2.2.2|兼容开发中...|HTTP-API 酷Q cpk插件|   
+|HTTP-API PHP SDK|2.2.2|已发布|PHP SDK|   
+|HTTP-API Java SDK|2.2.2|已发布|Java SDK|   
+|HTTP-API Python SDK|2.2.2|开发中...|Python SDK|   
+|HTTP-API NodeJS SDK|2.2.2|开发中...|NodeJS SDK|   
 
 ------
 ## 功能介绍
@@ -121,7 +131,7 @@ var_dump($forward->getFriendList());//获取好友列表
 >SDK引入方式   
 
 1. **Maven引入**   
-由于暂时没有提交Maven中央仓库，需要配置Maven私服，直接在pom文件中配置。在pom中加入如下代码即可：
+Java SDK已经提交Maven中央仓库，直接在pom文件中配置。在pom中加入如下代码即可：
 ```
 <dependencies>
     <dependency>
@@ -130,21 +140,6 @@ var_dump($forward->getFriendList());//获取好友列表
         <version>2.2.2</version>
     </dependency>
 </dependencies>
-
-<!--私服仓库地址，也可以直接使用非maven jar包-->
-    <repositories>
-        <repository>
-            <id>ksust-maven</id>
-            <name>Ksust Maven Repository</name>
-            <url>http://maven.ksust.com/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 ```
 
 2. **jar包引入（需要手动解决依赖）**   
