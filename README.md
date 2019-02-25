@@ -314,28 +314,28 @@ public class MsgForwardDemo {
 | setGroupAdmin(String groupId, String qq, boolean become) | 设置管理员（群主） | int | IR/CQ |群号|对象QQ|True为设置，false为取消|-|-|
 | handleGroupIn(String groupId, String qq, boolean agree, int type, String msg) | 处理加群事件，是否同意 | int | IR/CQ|群号|对象QQ|是否同意加群|213请求入群 214我被邀请加入某群 215某人被邀请加入群 。为0则不管哪种|消息，当拒绝时发送的消息|
 | handleFriendAdd(String qq, boolean agree, String msg) | 是否同意被加好友 | int | IR/CQ |对象QQ|是否同意|当拒绝时发送的消息|-|-|
-| addGroupNotice(String groupId, String title, String content) | 发群公告（管理） | int | IR/CQ |群号|公告标题|内容|-|-|
-| addGroupHomework(String groupId, String homewordName, String title, String content) |  发群作业（管理）。注意作业名和标题中不能含有#号 | int | IR/CQ |群号|作业名|标题|内容|-|
-| joinGroup(String groupId, String reason) | 主动申请加入群 | int | IR/CQ |群号|加群理由|-|-|-|
-| disGroupCreate(String disName, List<String> qqList) | 创建讨论组 | String | IR/CQ |讨论组名。并作为创建后第一条消息发送（激活消息）|需要添加到讨论组的QQ号列表|-|-|-|
+| addGroupNotice(String groupId, String title, String content) | 发群公告（管理） | int | IR |群号|公告标题|内容|-|-|
+| addGroupHomework(String groupId, String homewordName, String title, String content) |  发群作业（管理）。注意作业名和标题中不能含有#号 | int | IR |群号|作业名|标题|内容|-|
+| joinGroup(String groupId, String reason) | 主动申请加入群 | int | IR |群号|加群理由|-|-|-|
+| disGroupCreate(String disName, List<String> qqList) | 创建讨论组 | String | IR |讨论组名。并作为创建后第一条消息发送（激活消息）|需要添加到讨论组的QQ号列表|-|-|-|
 | disGroupQuit(String disGroupId) | 退出讨论组 | int | IR/CQ |讨论组ID|-|-|-|-|
-| disGroupKick(String disGroupId, List<String> qqList) | 踢出讨论组 | int | IR/CQ |讨论组ID|踢提出的QQ号列表|-|-|-|
-| disGroupInvite(String disGrouId, List<String> qqList) | 添加讨论组成员 | int | IR/CQ |讨论组号|欲添加的QQ号列表|-|-|-|
-| groupInvite(String groupId, String qq) | 邀请QQ入群（管理+群员） | int | IR/CQ |群号|QQ|-|-|-|
+| disGroupKick(String disGroupId, List<String> qqList) | 踢出讨论组 | int | IR |讨论组ID|踢提出的QQ号列表|-|-|-|
+| disGroupInvite(String disGrouId, List<String> qqList) | 添加讨论组成员 | int | IR |讨论组号|欲添加的QQ号列表|-|-|-|
+| groupInvite(String groupId, String qq) | 邀请QQ入群（管理+群员） | int | IR |群号|QQ|-|-|-|
 | getStrangerInfo(String qq) | 获取陌生人信息 isCallback情况下返回有数据的，否则返回空对象 | Stranger/- | IR/CQ |QQ|-|-|-|-|
 | getLoginQQ() | 获取当前登陆的QQ isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |-|-|-|-|-|
 | getGroupList() | 获取当前QQ群列表，JSON字符串 isCallback情况下返回有数据的，否则返回空对象 | JSON字符串/- | IR/CQ |-|-|-|-|-|
 | getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR/CQ |-|-|-|-|-|
 | getGroupMemberList(String groupId) | 获取群成员列表 isCallback情况下返回有数据的，否则返回空对象 | 群成员列表/- | IR/CQ |群号|-|-|-|-|
-| getGroupNotice(String groupId) | 获取群公告 isCallback情况下返回有数据的，否则返回空对象 | Notice/- | IR/CQ |群号|-|-|-|-|
-| getLikeCount(String qq) | 获取对象QQ赞数量 isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |对象QQ|-|-|-|-|
-| getDisGroupList() | 获取讨论组列表（IRQQ框架获取为空） isCallback情况下返回有数据的，否则返回空对象 | DisGroup/- | IR/CQ |-|-|-|-|-|
-| getQQLevel(String qq) | 获取QQ等级 | int | IR/CQ |QQ|-|-|-|-|
-| getGroupMemberCard(String groupId, String qq) | 获取群成员名片 | 群名片 | IR/CQ |群号|QQ|-|-|-|
-| getQQIsOline(String qq) | 查询QQ是否在线 | 是否在线 | IR/CQ |QQ|-|-|-|-|
-| getQQIsFriend(String qq) | 查询QQ是否好友 | 是否好友 | IR/CQ |QQ|-|-|-|-|
+| getGroupNotice(String groupId) | 获取群公告 isCallback情况下返回有数据的，否则返回空对象 | Notice/- | IR |群号|-|-|-|-|
+| getLikeCount(String qq) | 获取对象QQ赞数量 isCallback情况下返回有数据的，否则返回空对象 | int/- | IR |对象QQ|-|-|-|-|
+| getDisGroupList() | 获取讨论组列表（IRQQ框架获取为空） isCallback情况下返回有数据的，否则返回空对象 | DisGroup/- | IR |-|-|-|-|-|
+| getQQLevel(String qq) | 获取QQ等级 | int | IR |QQ|-|-|-|-|
+| getGroupMemberCard(String groupId, String qq) | 获取群成员名片 | 群名片 | IR |群号|QQ|-|-|-|
+| getQQIsOline(String qq) | 查询QQ是否在线 | 是否在线 | IR |QQ|-|-|-|-|
+| getQQIsFriend(String qq) | 查询QQ是否好友 | 是否好友 | IR |QQ|-|-|-|-|
 | getQQRobotInfo() | 获取当前QQ机器人状态信息（如是否在线） | 结构信息 | IR/CQ |-|-|-|-|-|
-| setInputStatus(String qq) | 置正在输入 状态，发送消息撤销 | int | IR/CQ |QQ|-|-|-|-|
+| setInputStatus(String qq) | 置正在输入 状态，发送消息撤销 | int | IR |QQ|-|-|-|-|
 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 
@@ -350,9 +350,9 @@ public class MsgForwardDemo {
 | 事件名 | 值 | 说明 | 支持平台 | 备注 | 
 | ----------- |----------- | ----------- | ----------- | ----------- |
 | TYPE_FRIEND_TEMP | 0 | 在线状态临时会话（Pro版可用）| IR | - |
-| TYPE_FRIEND | 1 | 好友消息，发送私聊消息| IR | - |
-| TYPE_GROUP | 2 | 群消息，发送群消息| IR | - |
-| TYPE_DISCUSS | 3 | 讨论组消息，发送讨论组消息| IR | - |
+| TYPE_FRIEND | 1 | 好友消息，发送私聊消息| IR/CQ | - |
+| TYPE_GROUP | 2 | 群消息，发送群消息| IR/CQ | - |
+| TYPE_DISCUSS | 3 | 讨论组消息，发送讨论组消息| IR/CQ | - |
 | TYPE_GROUP_TEMP | 4 | 群临时会话| IR | - |
 | TYPE_DISCUSS_TEMP | 5 | 讨论组临时会话| IR | - |
 | TYPE_ACCOUNT | 6 | 收到财付通转账| IR | - |
@@ -361,26 +361,26 @@ public class MsgForwardDemo {
 | TYPE_HANDLE_REJECT | 20 | 请求处理_拒绝| IR | - |
 | TYPE_HANDLE_IGNORE | 30 | 请求处理_忽略| IR | - |
 | TYPE_FRIEND_ADDED_SINGLE | 100 | 被单项添加为好友| IR | - |
-| TYPE_FRIEND_ADDED | 101 | 某人请求加为好友| IR | - |
-| TYPE_FRIEND_ADDED_AGREED | 102 | 被同意加为好友| IR | - |
+| TYPE_FRIEND_ADDED | 101 | 某人请求加为好友| IR/CQ | - |
+| TYPE_FRIEND_ADDED_AGREED | 102 | 被同意加为好友| IR/CQ | - |
 | TYPE_FRIEND_ADDED_REJECTED | 103 | 被拒绝加为好友| IR | - |
 | TYPE_FRIEND_DELETED | 104 | 被删除好友| IR | - |
 | TYPE_FRIEND_FILE_OFFLINE | 105 | 收到好友离线文件（Pro版可用）| IR | - |
 | TYPE_FRIEND_SIGNATURE_CHANGE | 106 | 好友签名变更| IR | - |
 | TYPE_FRIEND_SAY_COMMENT | 107 | 说说被某人评论| IR | - |
-| TYPE_GROUP_FILE_RECV | 218 | 收到群文件| IR | - |
-| TYPE_GROUP_IN_WHO_REQUEST | 213 | 某人请求入群| IR | - |
-| TYPE_GROUP_IN_ME_INVITED | 214 | 被邀请加入群| IR | - |
+| TYPE_GROUP_FILE_RECV | 218 | 收到群文件| IR/CQ | - |
+| TYPE_GROUP_IN_WHO_REQUEST | 213 | 某人请求入群| IR/CQ | - |
+| TYPE_GROUP_IN_ME_INVITED | 214 | 被邀请加入群| IR/CQ | - |
 | TYPE_GROUP_IN_ME_AGREED | 220 | 被批准入群| IR | - |
 | TYPE_GROUP_IN_ME_REJECTED | 221 | 被拒绝入群| IR | - |
 | TYPE_GROUP_IN_WHO_INVITED | 215 | 某人被邀请加入群| IR | - |
-| TYPE_GROUP_IN_WHO_INVITED_HAS | 219 | 某人已被邀请加入群（群主或管理员邀请成员加群或开启了群成员100以内无需审核或无需审核直接进群，被邀请人同意进群后才会触发）| IR | - |
-| TYPE_GROUP_IN_WHO_AGREED | 212 | 某人被批准加入了群| IR | - |
-| TYPE_GROUP_QUIT_WHO | 201 | 某人退出群| IR | - |
-| TYPE_GROUP_QUITED_WHO | 202 | 某人被管理移除群| IR | - |
+| TYPE_GROUP_IN_WHO_INVITED_HAS | 219 | 某人已被邀请加入群（群主或管理员邀请成员加群或开启了群成员100以内无需审核或无需审核直接进群，被邀请人同意进群后才会触发）| IR/CQ | - |
+| TYPE_GROUP_IN_WHO_AGREED | 212 | 某人被批准加入了群| IR/CQ | - |
+| TYPE_GROUP_QUIT_WHO | 201 | 某人退出群| IR/CQ | - |
+| TYPE_GROUP_QUITED_WHO | 202 | 某人被管理移除群| IR/CQ | - |
 | TYPE_GROUP_INVALID | 216 | 某群被解散| IR | - |
-| TYPE_GROUP_ADMIN_WHO_BECOME | 210 | 某人成为管理| IR | - |
-| TYPE_GROUP_ADMIN_WHO_INVALID | 211 | 某人被取消管理| IR | - |
+| TYPE_GROUP_ADMIN_WHO_BECOME | 210 | 某人成为管理| IR/CQ | - |
+| TYPE_GROUP_ADMIN_WHO_INVALID | 211 | 某人被取消管理| IR/CQ | - |
 | TYPE_GROUP_BANED | 203 | 对象被禁言| IR | - |
 | TYPE_GROUP_BANED_INVALID | 204 | 对象被解除禁言| IR | - |
 | TYPE_GROUP_BANED_ALL | 205 | 开启全群禁言| IR | - |
