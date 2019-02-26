@@ -15,15 +15,17 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 开发群：（QQ群，开发者加入）598629636   
 管理平台：http://work.ksust.com   
 
-### 版本分布   
-|名称|最新版本|状态|备注|   
-|----|----|----|----|   
-|HTTP-API For CleverQQ|2.2.2|已发布|HTTP-API CleverQQ DLL插件|   
-|HTTP-API For CoolQ|2.2.2|兼容开发中...|HTTP-API 酷Q cpk插件|   
-|HTTP-API PHP SDK|2.2.2|已发布|PHP SDK|   
-|HTTP-API Java SDK|2.2.2|已发布|Java SDK|   
-|HTTP-API Python SDK|2.2.2|开发中...|Python SDK|   
-|HTTP-API NodeJS SDK|2.2.2|开发中...|NodeJS SDK|   
+### 版本分布（来源）   
+|名称|最新版本|协议版本|状态|来源|备注|   
+|----|----|----|----|----|----|   
+|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|   
+|HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|   
+|HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|   
+|HTTP-API Java SDK|2.2.2|2.2.2|已发布|标准|Java SDK|   
+|HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|   
+|HTTP-API NodeJS SDK|2.2.2|2.2.2|开发中...|标准|NodeJS SDK|   
+|SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|   
+* *注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK将入上述版本仓库，请联系admin@ksust.com*   
 
 ------
 ## 功能介绍
@@ -325,7 +327,7 @@ public class MsgForwardDemo {
 | getStrangerInfo(String qq) | 获取陌生人信息 isCallback情况下返回有数据的，否则返回空对象 | Stranger/- | IR/CQ |QQ|-|-|-|-|
 | getLoginQQ() | 获取当前登陆的QQ isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |-|-|-|-|-|
 | getGroupList() | 获取当前QQ群列表，JSON字符串 isCallback情况下返回有数据的，否则返回空对象 | JSON字符串/- | IR/CQ |-|-|-|-|-|
-| getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR/CQ |-|-|-|-|-|
+| getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR |-|-|-|-|-|
 | getGroupMemberList(String groupId) | 获取群成员列表 isCallback情况下返回有数据的，否则返回空对象 | 群成员列表/- | IR/CQ |群号|-|-|-|-|
 | getGroupNotice(String groupId) | 获取群公告 isCallback情况下返回有数据的，否则返回空对象 | Notice/- | IR |群号|-|-|-|-|
 | getLikeCount(String qq) | 获取对象QQ赞数量 isCallback情况下返回有数据的，否则返回空对象 | int/- | IR |对象QQ|-|-|-|-|
@@ -546,11 +548,11 @@ public class MsgForwardDemo {
 >开启开发者模式
 * 开启开发者模式
 >提交返回配置
-* 提交返回一般只需填提交URL即可，URL填HTTP协议地址（如http://127.0.0.1），或者填webSocket地址（如ws://127.0.0.1:2346），点击测试即可查看测试结果（测试发起的GET请求）。   
+* 提交返回一般只需填提交URL即可，URL填HTTP协议地址（如[http://127.0.0.1](http://127.0.0.1)），或者填webSocket地址（如ws://127.0.0.1:2346），点击测试即可查看测试结果（测试发起的GET请求）。   
 >主动推送配置
 * 主动提交一般只需开启服务，配置监听端口即可。   
 >定时任务配置
-* 定时任务只需开启服务并添加任务URL（只能是HTTP://XXX），填写任务间隔（秒）即可，任务间隔最小为1秒。   
+* 定时任务只需开启服务并添加任务URL（只能是[http://XXX](http://XXX)），填写任务间隔（秒）即可，任务间隔最小为1秒。   
 >发布应用到平台
 * 应用发布是针对已经认证开发者的开发者。可以在平台上发布开发的应用，用户可很方便地通过线上安装运行你的应用，另外开发者也可以通过这种方式获得收入（应用安装收费）。详情请加入开发群。
 
