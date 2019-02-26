@@ -25,7 +25,7 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 |HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|   
 |HTTP-API NodeJS SDK|2.2.2|2.2.2|开发中...|标准|NodeJS SDK|   
 |SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|   
-* *注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK将入上述版本仓库，请联系admin@ksust.com*   
+* **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
 ------
 ## 功能介绍
@@ -391,15 +391,15 @@ public class MsgForwardDemo {
 | TYPE_GROUP_ANONYMOUS_CLOSE | 208 | 关闭匿名聊天| IR | - |
 | TYPE_GROUP_NOTICE_CHANGE | 209 | 群公告变动| IR | - |
 | TYPE_GROUP_CARD_CHANGE | 217 | 群名片变动| IR | - |
-| TYPE_SEND_LIKE | 20001 | 点赞| IR | 操作类型 |
-| TYPE_SEND_SHAKE | 20002 | 窗口抖动| IR | - |
-| TYPE_GROUP_BAN | 20011 | 群禁言（管理）| IR | - |
-| TYPE_GROUP_QUIT | 20012 | 主动退群| IR | - |
-| TYPE_GROUP_KICK | 20013 |  踢群成员（管理）| IR | - |
-| TYPE_GROUP_SET_CARD | 20021 | 设置群名片（管理）| IR | - |
-| TYPE_GROUP_SET_ADMIN | 20022 | 设置群管理（群主）| IR | - |
-| TYPE_GROUP_HANDLE_GROUP_IN | 20023 | 入群处理（某人请求入群、我被邀请入群、某人被邀请入群）| IR | - |
-| TYPE_FRIEND_HANDLE_FRIEND_ADD | 20024 | 加好友处理（是否同意被加好友）| IR | - |
+| TYPE_SEND_LIKE | 20001 | 点赞| IR/CQ | 操作类型 |
+| TYPE_SEND_SHAKE | 20002 | 窗口抖动| I/CQ | - |
+| TYPE_GROUP_BAN | 20011 | 群禁言（管理）| IR/CQ | - |
+| TYPE_GROUP_QUIT | 20012 | 主动退群| IR/CQ | - |
+| TYPE_GROUP_KICK | 20013 |  踢群成员（管理）| IR/CQ | - |
+| TYPE_GROUP_SET_CARD | 20021 | 设置群名片（管理）| IR/CQ | - |
+| TYPE_GROUP_SET_ADMIN | 20022 | 设置群管理（群主）| IR/CQ | - |
+| TYPE_GROUP_HANDLE_GROUP_IN | 20023 | 入群处理（某人请求入群、我被邀请入群、某人被邀请入群）| IR/CQ | - |
+| TYPE_FRIEND_HANDLE_FRIEND_ADD | 20024 | 加好友处理（是否同意被加好友）| IR/CQ | - |
 | TYPE_GROUP_ADD_NOTICE | 20031 | 发群公告| IR | - |
 | TYPE_GROUP_ADD_HOMEWORK | 20032 | 发群作业| IR | - |
 | TYPE_GROUP_JOIN | 20033 | 主动申请加入群| IR | - |
@@ -408,10 +408,10 @@ public class MsgForwardDemo {
 | TYPE_DIS_KICK | 20043 | 踢出讨论组成员| IR | - |
 | TYPE_DIS_QUIT | 20044 | 退出讨论组| IR | - |
 | TYPE_GROUP_INVITE | 20051 | 邀请QQ入群（管理+普通成员）| IR | - |
-| TYPE_GET_LOGIN_QQ | 20101 | 获取当前QQ| IR | - |
-| TYPE_GET_STRANGER_INFO | 20102 | 获取陌生人信息，JSON，昵称，性别，年龄，签名| IR | - |
-| TYPE_GET_GROUP_LIST | 20103 | 获取当前QQ群列表，JSON| IR | - |
-| TYPE_GET_GROUP_MEMBER_LIST | 20104 | 获取指定群成员列表，JSON| IR | - |
+| TYPE_GET_LOGIN_QQ | 20101 | 获取当前QQ| IR/CQ | - |
+| TYPE_GET_STRANGER_INFO | 20102 | 获取陌生人信息，JSON，昵称，性别，年龄，签名| IR/CQ | - |
+| TYPE_GET_GROUP_LIST | 20103 | 获取当前QQ群列表，JSON| IR/CQ | - |
+| TYPE_GET_GROUP_MEMBER_LIST | 20104 | 获取指定群成员列表，JSON| IR/CQ | - |
 | TYPE_GET_FRIEND_LIST | 20105 | 获取好友列表，JSON| IR | - |
 | TYPE_GET_GROUP_NOTICE | 20106 | 获取群公告列表，JSON| IR | - |
 | TYPE_GET_DIS_LIST | 20107 | 获取讨论组列表| IR | - |
@@ -419,10 +419,10 @@ public class MsgForwardDemo {
 | TYPE_GET_GROUP_MEMBER_CARD | 20112 | 获取群成员名片| IR | - |
 | TYPE_GET_QQ_ONLINE_STATUS | 20113 | 查询QQ是否在线| IR | - |
 | TYPE_GET_QQ_IS_FRIEND | 20114 | 查询QQ是否好友| IR | - |
-| TYPE_GET_QQ_ROBOT_INFO | 20115 | 获取机器人状态信息，JSON| IR | - |
+| TYPE_GET_QQ_ROBOT_INFO | 20115 | 获取机器人状态信息，JSON| IR/CQ | - |
 | TYPE_LIKE_COUNT_GET | 20201 | 获取目标对象赞数目| IR | - |
 | TYPE_SET_INPUT_STATUS | 20301 | 置正在输入状态（发送消息取消）| IR | - |
-| TYPE_TIMER_SEND | 30001 | 定时任务提交类型| IR | - |
+| TYPE_TIMER_SEND | 30001 | 定时任务提交类型| IR/CQ | - |
 | SUBTYPE_CALLBACK_SEND | 10001 | 提交返回有反馈时，更改原数据中的subtype和msg（数据），向返回地址发送反馈
 | -- | -- | -- | - | - |
 
