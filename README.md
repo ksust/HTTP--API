@@ -22,7 +22,7 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 |HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|-|   
 |HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API/tree/master/demo/PHP)|   
 |HTTP-API Java SDK|2.2.2|2.2.2|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP-API-Java-Demo)|   
-|HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|-|   
+|HTTP-API Python SDK|2.2.2|2.2.2|已发布(Pypi)|标准|Python SDK|[Django Demo](https://github.com/ksust/http_api_django_demo)|   
 |HTTP-API NodeJS SDK|2.2.3|2.2.2|已发布(npm)|标准|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API/tree/master/demo/NodeJS)|   
 |SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
 * **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
@@ -270,14 +270,54 @@ public class MsgForwardDemo {
 }
 ```
 ### Python Demo
-编写中...   
+
+>安装(Python2/3)：pip install http-api-sdk   
+
 >提交返回    
-
+```
+# 独立demo：https://github.com/ksust/http_api_django_demo
+```
 >webSocket  
-
+```
+#原理同提交返回，取决于使用什么外部框架。
+```
 >HTTP推送   
+```
+#!/usr/bin/env python
+# -*-coding:utf-8-*-
+"""
+Demo Push
+HTTP-API Python SDK(Python2、python3)
+ * Created by PyCharm.
+ * User: yugao
+ * version 2.2.2
+ * Note: HTTPSDK for Python(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装：pip install http-api-sdk
+"""
 
+from httpapi.HTTPSDK import *
+
+if sys.version_info.major == 2:
+    reload(sys)  # python2请配置相应编码
+    sys.setdefaultencoding('utf8')
+    sys.setdefaultencoding('gb18030')
+
+push = HTTPSDK.httpPush("http://127.0.0.1:8080")
+print(push.getGroupList())
+print(push.sendPrivdteMsg('QQ', '你好'))
+
+forward = HTTPSDK.msgForwardPush('QQ', '授权码')
+print(forward.getGroupList())
+print(forward.getLoginQQ())
+print(forward.sendPrivdteMsg('QQ', '你好'))
+print(forward.getQQRobotInfo())
+
+```
 >消息转发   
+```   
+#上述推送中包含消息转发（forward）
+```  
 
 ### NodeJS Demo
 >安装依赖：npm install http-api-sdk   
