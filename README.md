@@ -16,15 +16,15 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 管理平台：http://work.ksust.com   
 
 ### 版本分布（来源）   
-|名称|最新版本|协议版本|状态|来源|备注|   
-|----|----|----|----|----|----|   
-|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|   
-|HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|   
-|HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|   
-|HTTP-API Java SDK|2.2.2|2.2.2|已发布|标准|Java SDK|   
-|HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|   
-|HTTP-API NodeJS SDK|2.2.2|2.2.2|开发中...|标准|NodeJS SDK|   
-|SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|   
+|名称|最新版本|协议版本|状态|来源|备注|Demo地址|   
+|----|----|----|----|----|----|----|   
+|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|-|   
+|HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|-|   
+|HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API/tree/master/demo/PHP)|   
+|HTTP-API Java SDK|2.2.2|2.2.2|已发布|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP-API-Java-Demo)|   
+|HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|-|   
+|HTTP-API NodeJS SDK|2.2.2|2.2.2|开发中...|标准|NodeJS SDK|-|   
+|SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
 * **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
 ------
