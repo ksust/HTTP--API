@@ -21,9 +21,9 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 |HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|-|   
 |HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|-|   
 |HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API/tree/master/demo/PHP)|   
-|HTTP-API Java SDK|2.2.2|2.2.2|已发布|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP-API-Java-Demo)|   
+|HTTP-API Java SDK|2.2.2|2.2.2|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP-API-Java-Demo)|   
 |HTTP-API Python SDK|2.2.2|2.2.2|开发中...|标准|Python SDK|-|   
-|HTTP-API NodeJS SDK|2.2.2|2.2.2|开发中...|标准|NodeJS SDK|-|   
+|HTTP-API NodeJS SDK|2.2.3|2.2.2|已发布(npm)|标准|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API/tree/master/demo/NodeJS)|   
 |SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
 * **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
@@ -91,8 +91,8 @@ $ws_worker->onMessage = function ($connection, $data) {
         if ($msg['Msg'] == 'demo') {
             $sdk->sendPrivateMsg($msg['QQ'], '你发送了这样的消息：' . $msg['Msg']);//逻辑代码，向发送者回消息
         }
-        //echo $sdk->returnJsonString();
-        $connection->send($sdk->returnJsonString());
+        //echo $sdk->toJsonString();
+        $connection->send($sdk->toJsonString());
     }
 
 };
@@ -273,21 +273,90 @@ public class MsgForwardDemo {
 编写中...   
 >提交返回    
 
->webSocket（结合使用workman）  
+>webSocket  
 
 >HTTP推送   
 
 >消息转发   
 
 ### NodeJS Demo
-编写中...   
+>安装依赖：npm install http-api-sdk   
+>引用包：如 const HTTPSDK = require('http-api-sdk');   
+
 >提交返回    
-
->webSocket（结合使用workman）  
-
+```
+/**
+ * Demo
+ * User: yugao
+ * Date: 2019/2/27
+ * version 2.2.2
+ * Note: HTTPSDK for NodeJS(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装SDK：npm install http-api-sdk
+ */
+const http = require('http');
+const HTTPSDK = require('http-api-sdk');
+const server = http.createServer((req, res) => {
+    req.on('data', function (data) {
+        let sdk = HTTPSDK.httpGet(data.toString());
+        //console.log(sdk.getMsg());//获取到的消息
+        sdk.sendPrivateMsg(sdk.getMsg()['QQ'], '你发送了这样的消息：' + sdk.getMsg()['Msg']);
+        sdk.getLoginQQ();
+        //回调演示，提交返回获取群列表、登录QQ等
+        if (sdk.isCallback() && parseInt(sdk.getMsg()['Type']) === HTTPSDK.TYPE_GET_LOGIN_QQ) {
+            console.log('Login QQ:' + sdk.getLoginQQ());
+        }
+        res.end(sdk.toJsonString());
+    });
+});
+server.on('clientError', (err, socket) => {
+    socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+});
+server.listen(8000);
+```
+>webSocket（）  
+```
+//与PHP版本类似，传入获取的字符串即可。取决于用什么框架，和上述提交返回使用方法基本相同，这里不再赘述。
+```
 >HTTP推送   
-
+```
+/**
+ * Demo
+ * User: yugao
+ * Date: 2019/2/27
+ * version 2.2.2
+ * Note: HTTPSDK for NodeJS(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装SDK：npm install http-api-sdk
+ */
+const HTTPSDK = require('http-api-sdk');
+//推送演示，需要配置推送
+push = HTTPSDK.httpPush('http://127.0.0.1:8080')
+push.getGroupList().data(function (data) {
+    console.log('push ' + data)
+});
+push.getLoginQQ().data(function (data) {
+    console.log('push ' + data)
+});
+push.sendPrivateMsg('QQ', 'Hello').data(function (data) {
+    console.log('push ' + data)
+});
+//消息转发演示，插件在线即可用
+let forward = HTTPSDK.msgForwardPush('QQ', '授权码');
+forward.getLoginQQ().data(function (data) {
+    console.log('forward ' + data);
+});
+forward.getGroupList().data(function (data) {
+    console.log('forward ' + data);
+});
+forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
+    console.log('forward' + data)
+});
+```
 >消息转发   
+```   
+//上述推送中包含消息转发（forward）
+```   
 
 ------
 
