@@ -27,7 +27,7 @@ $ws_worker->onMessage = function ($connection, $data) {
             $sdk->sendPrivateMsg($msg['QQ'], '你发送了这样的消息：' . $msg['Msg']);//逻辑代码，向发送者回消息
         }
         //echo $sdk->returnJsonString();
-        $connection->send($sdk->returnJsonString());
+        $connection->send($sdk->toJsonString());
     }
 
 };

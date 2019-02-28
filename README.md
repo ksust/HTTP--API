@@ -432,10 +432,10 @@ public class MsgForwardDemo {
 | 标签 | 说明 | 举例 | 支持平台 | 备注 |
 | ----------- |----------- | ----------- | ----------- |----------- |
 | [ksust,music:name=歌曲名] | 多选音乐卡片，传入歌名 | [ksust,music:name=明天] |  IR | - |
-| [ksust,link:url=链接网址,title=标题文字,content=内容文字,pic=图片链接]  | 简单图文（卡片）| - | IR | - |
+| [ksust,link:url=链接网址,title=标题文字,content=内容文字,pic=图片链接]  | 简单图文（卡片）| - | IR/CQ（Pro） | - |
 | [ksust,link2:url=链接网址,title=标题文字,content=内容文字,pic=图片链接,bcontent=内容2文字,bpic=大图链接] | 简单图文，加大图和长文本 |- | IR | - |
 | [ksust,at:qq=qq] | 统一标签，艾特某人。qq=all 或 qq=QQ号码。可跨平台兼容 | [ksust,at:qq=all] |IR/CQ |  - |
-| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ | - |
+| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ（Pro） | - |
 | [ksust,at_all:qq=all]  | 逐个@全体成员，避免@全体成员限制 | 固定用法 [ksust,at_all:qq=all] | IR | - |
 
 ### 数据结构
