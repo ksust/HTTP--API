@@ -15,15 +15,17 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 开发群：（QQ群，开发者加入）598629636   
 管理平台：http://work.ksust.com   
 
-### 版本分布   
-|名称|最新版本|状态|备注|   
-|----|----|----|----|   
-|HTTP-API For CleverQQ|2.2.2|已发布|HTTP-API CleverQQ DLL插件|   
-|HTTP-API For CoolQ|2.2.2|兼容开发中...|HTTP-API 酷Q cpk插件|   
-|HTTP-API PHP SDK|2.2.2|已发布|PHP SDK|   
-|HTTP-API Java SDK|2.2.2|已发布|Java SDK|   
-|HTTP-API Python SDK|2.2.2|开发中...|Python SDK|   
-|HTTP-API NodeJS SDK|2.2.2|开发中...|NodeJS SDK|   
+### 版本分布（来源）   
+|名称|最新版本|协议版本|状态|来源|备注|Demo地址|   
+|----|----|----|----|----|----|----|   
+|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/HTTP-API.IR.dll)|   
+|HTTP-API For CoolQ|2.2.2|2.2.2|已发布|标准|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
+|HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API#php-demo)|   
+|HTTP-API Java SDK|2.2.2|2.2.2|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
+|HTTP-API Python SDK|2.2.2|2.2.2|已发布(Pypi)|标准|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#java-demo)|   
+|HTTP-API NodeJS SDK|2.2.3|2.2.2|已发布(npm)|标准|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API#java-demo)|   
+|SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
+* **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
 ------
 ## 功能介绍
@@ -89,8 +91,8 @@ $ws_worker->onMessage = function ($connection, $data) {
         if ($msg['Msg'] == 'demo') {
             $sdk->sendPrivateMsg($msg['QQ'], '你发送了这样的消息：' . $msg['Msg']);//逻辑代码，向发送者回消息
         }
-        //echo $sdk->returnJsonString();
-        $connection->send($sdk->returnJsonString());
+        //echo $sdk->toJsonString();
+        $connection->send($sdk->toJsonString());
     }
 
 };
@@ -268,24 +270,133 @@ public class MsgForwardDemo {
 }
 ```
 ### Python Demo
-编写中...   
+
+>安装(Python2/3)：pip install http-api-sdk   
+
 >提交返回    
-
->webSocket（结合使用workman）  
-
+```
+# 独立demo：https://github.com/ksust/http_api_django_demo
+```
+>webSocket  
+```
+#原理同提交返回，取决于使用什么外部框架。
+```
 >HTTP推送   
+```
+#!/usr/bin/env python
+# -*-coding:utf-8-*-
+"""
+Demo Push
+HTTP-API Python SDK(Python2、python3)
+ * Created by PyCharm.
+ * User: yugao
+ * version 2.2.2
+ * Note: HTTPSDK for Python(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装：pip install http-api-sdk
+"""
 
+from httpapi.HTTPSDK import *
+
+if sys.version_info.major == 2:
+    reload(sys)  # python2请配置相应编码
+    sys.setdefaultencoding('utf8')
+    sys.setdefaultencoding('gb18030')
+
+push = HTTPSDK.httpPush("http://127.0.0.1:8080")
+print(push.getGroupList())
+print(push.sendPrivdteMsg('QQ', '你好'))
+
+forward = HTTPSDK.msgForwardPush('QQ', '授权码')
+print(forward.getGroupList())
+print(forward.getLoginQQ())
+print(forward.sendPrivdteMsg('QQ', '你好'))
+print(forward.getQQRobotInfo())
+
+```
 >消息转发   
+```   
+#上述推送中包含消息转发（forward）
+```  
 
 ### NodeJS Demo
-编写中...   
+>安装依赖：npm install http-api-sdk   
+>引用包：如 const HTTPSDK = require('http-api-sdk');   
+
 >提交返回    
-
->webSocket（结合使用workman）  
-
+```
+/**
+ * Demo
+ * User: yugao
+ * Date: 2019/2/27
+ * version 2.2.2
+ * Note: HTTPSDK for NodeJS(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装SDK：npm install http-api-sdk
+ */
+const http = require('http');
+const HTTPSDK = require('http-api-sdk');
+const server = http.createServer((req, res) => {
+    req.on('data', function (data) {
+        let sdk = HTTPSDK.httpGet(data.toString());
+        //console.log(sdk.getMsg());//获取到的消息
+        sdk.sendPrivateMsg(sdk.getMsg()['QQ'], '你发送了这样的消息：' + sdk.getMsg()['Msg']);
+        sdk.getLoginQQ();
+        //回调演示，提交返回获取群列表、登录QQ等
+        if (sdk.isCallback() && parseInt(sdk.getMsg()['Type']) === HTTPSDK.TYPE_GET_LOGIN_QQ) {
+            console.log('Login QQ:' + sdk.getLoginQQ());
+        }
+        res.end(sdk.toJsonString());
+    });
+});
+server.on('clientError', (err, socket) => {
+    socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+});
+server.listen(8000);
+```
+>webSocket（）  
+```
+//与PHP版本类似，传入获取的字符串即可。取决于用什么框架，和上述提交返回使用方法基本相同，这里不再赘述。
+```
 >HTTP推送   
-
+```
+/**
+ * Demo
+ * User: yugao
+ * Date: 2019/2/27
+ * version 2.2.2
+ * Note: HTTPSDK for NodeJS(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
+ * Contact: 开发者邮箱 admin@ksust.com
+ * 安装SDK：npm install http-api-sdk
+ */
+const HTTPSDK = require('http-api-sdk');
+//推送演示，需要配置推送
+push = HTTPSDK.httpPush('http://127.0.0.1:8080')
+push.getGroupList().data(function (data) {
+    console.log('push ' + data)
+});
+push.getLoginQQ().data(function (data) {
+    console.log('push ' + data)
+});
+push.sendPrivateMsg('QQ', 'Hello').data(function (data) {
+    console.log('push ' + data)
+});
+//消息转发演示，插件在线即可用
+let forward = HTTPSDK.msgForwardPush('QQ', '授权码');
+forward.getLoginQQ().data(function (data) {
+    console.log('forward ' + data);
+});
+forward.getGroupList().data(function (data) {
+    console.log('forward ' + data);
+});
+forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
+    console.log('forward' + data)
+});
+```
 >消息转发   
+```   
+//上述推送中包含消息转发（forward）
+```   
 
 ------
 
@@ -325,7 +436,7 @@ public class MsgForwardDemo {
 | getStrangerInfo(String qq) | 获取陌生人信息 isCallback情况下返回有数据的，否则返回空对象 | Stranger/- | IR/CQ |QQ|-|-|-|-|
 | getLoginQQ() | 获取当前登陆的QQ isCallback情况下返回有数据的，否则返回空对象 | int/- | IR/CQ |-|-|-|-|-|
 | getGroupList() | 获取当前QQ群列表，JSON字符串 isCallback情况下返回有数据的，否则返回空对象 | JSON字符串/- | IR/CQ |-|-|-|-|-|
-| getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR/CQ |-|-|-|-|-|
+| getFriendList() | 获取好友列表 isCallback情况下返回有数据的，否则返回空对象 | 好友列表/- | IR |-|-|-|-|-|
 | getGroupMemberList(String groupId) | 获取群成员列表 isCallback情况下返回有数据的，否则返回空对象 | 群成员列表/- | IR/CQ |群号|-|-|-|-|
 | getGroupNotice(String groupId) | 获取群公告 isCallback情况下返回有数据的，否则返回空对象 | Notice/- | IR |群号|-|-|-|-|
 | getLikeCount(String qq) | 获取对象QQ赞数量 isCallback情况下返回有数据的，否则返回空对象 | int/- | IR |对象QQ|-|-|-|-|
@@ -389,15 +500,15 @@ public class MsgForwardDemo {
 | TYPE_GROUP_ANONYMOUS_CLOSE | 208 | 关闭匿名聊天| IR | - |
 | TYPE_GROUP_NOTICE_CHANGE | 209 | 群公告变动| IR | - |
 | TYPE_GROUP_CARD_CHANGE | 217 | 群名片变动| IR | - |
-| TYPE_SEND_LIKE | 20001 | 点赞| IR | 操作类型 |
-| TYPE_SEND_SHAKE | 20002 | 窗口抖动| IR | - |
-| TYPE_GROUP_BAN | 20011 | 群禁言（管理）| IR | - |
-| TYPE_GROUP_QUIT | 20012 | 主动退群| IR | - |
-| TYPE_GROUP_KICK | 20013 |  踢群成员（管理）| IR | - |
-| TYPE_GROUP_SET_CARD | 20021 | 设置群名片（管理）| IR | - |
-| TYPE_GROUP_SET_ADMIN | 20022 | 设置群管理（群主）| IR | - |
-| TYPE_GROUP_HANDLE_GROUP_IN | 20023 | 入群处理（某人请求入群、我被邀请入群、某人被邀请入群）| IR | - |
-| TYPE_FRIEND_HANDLE_FRIEND_ADD | 20024 | 加好友处理（是否同意被加好友）| IR | - |
+| TYPE_SEND_LIKE | 20001 | 点赞| IR/CQ | 操作类型 |
+| TYPE_SEND_SHAKE | 20002 | 窗口抖动| I/CQ | - |
+| TYPE_GROUP_BAN | 20011 | 群禁言（管理）| IR/CQ | - |
+| TYPE_GROUP_QUIT | 20012 | 主动退群| IR/CQ | - |
+| TYPE_GROUP_KICK | 20013 |  踢群成员（管理）| IR/CQ | - |
+| TYPE_GROUP_SET_CARD | 20021 | 设置群名片（管理）| IR/CQ | - |
+| TYPE_GROUP_SET_ADMIN | 20022 | 设置群管理（群主）| IR/CQ | - |
+| TYPE_GROUP_HANDLE_GROUP_IN | 20023 | 入群处理（某人请求入群、我被邀请入群、某人被邀请入群）| IR/CQ | - |
+| TYPE_FRIEND_HANDLE_FRIEND_ADD | 20024 | 加好友处理（是否同意被加好友）| IR/CQ | - |
 | TYPE_GROUP_ADD_NOTICE | 20031 | 发群公告| IR | - |
 | TYPE_GROUP_ADD_HOMEWORK | 20032 | 发群作业| IR | - |
 | TYPE_GROUP_JOIN | 20033 | 主动申请加入群| IR | - |
@@ -406,10 +517,10 @@ public class MsgForwardDemo {
 | TYPE_DIS_KICK | 20043 | 踢出讨论组成员| IR | - |
 | TYPE_DIS_QUIT | 20044 | 退出讨论组| IR | - |
 | TYPE_GROUP_INVITE | 20051 | 邀请QQ入群（管理+普通成员）| IR | - |
-| TYPE_GET_LOGIN_QQ | 20101 | 获取当前QQ| IR | - |
-| TYPE_GET_STRANGER_INFO | 20102 | 获取陌生人信息，JSON，昵称，性别，年龄，签名| IR | - |
-| TYPE_GET_GROUP_LIST | 20103 | 获取当前QQ群列表，JSON| IR | - |
-| TYPE_GET_GROUP_MEMBER_LIST | 20104 | 获取指定群成员列表，JSON| IR | - |
+| TYPE_GET_LOGIN_QQ | 20101 | 获取当前QQ| IR/CQ | - |
+| TYPE_GET_STRANGER_INFO | 20102 | 获取陌生人信息，JSON，昵称，性别，年龄，签名| IR/CQ | - |
+| TYPE_GET_GROUP_LIST | 20103 | 获取当前QQ群列表，JSON| IR/CQ | - |
+| TYPE_GET_GROUP_MEMBER_LIST | 20104 | 获取指定群成员列表，JSON| IR/CQ | - |
 | TYPE_GET_FRIEND_LIST | 20105 | 获取好友列表，JSON| IR | - |
 | TYPE_GET_GROUP_NOTICE | 20106 | 获取群公告列表，JSON| IR | - |
 | TYPE_GET_DIS_LIST | 20107 | 获取讨论组列表| IR | - |
@@ -417,10 +528,10 @@ public class MsgForwardDemo {
 | TYPE_GET_GROUP_MEMBER_CARD | 20112 | 获取群成员名片| IR | - |
 | TYPE_GET_QQ_ONLINE_STATUS | 20113 | 查询QQ是否在线| IR | - |
 | TYPE_GET_QQ_IS_FRIEND | 20114 | 查询QQ是否好友| IR | - |
-| TYPE_GET_QQ_ROBOT_INFO | 20115 | 获取机器人状态信息，JSON| IR | - |
+| TYPE_GET_QQ_ROBOT_INFO | 20115 | 获取机器人状态信息，JSON| IR/CQ | - |
 | TYPE_LIKE_COUNT_GET | 20201 | 获取目标对象赞数目| IR | - |
 | TYPE_SET_INPUT_STATUS | 20301 | 置正在输入状态（发送消息取消）| IR | - |
-| TYPE_TIMER_SEND | 30001 | 定时任务提交类型| IR | - |
+| TYPE_TIMER_SEND | 30001 | 定时任务提交类型| IR/CQ | - |
 | SUBTYPE_CALLBACK_SEND | 10001 | 提交返回有反馈时，更改原数据中的subtype和msg（数据），向返回地址发送反馈
 | -- | -- | -- | - | - |
 
@@ -430,10 +541,10 @@ public class MsgForwardDemo {
 | 标签 | 说明 | 举例 | 支持平台 | 备注 |
 | ----------- |----------- | ----------- | ----------- |----------- |
 | [ksust,music:name=歌曲名] | 多选音乐卡片，传入歌名 | [ksust,music:name=明天] |  IR | - |
-| [ksust,link:url=链接网址,title=标题文字,content=内容文字,pic=图片链接]  | 简单图文（卡片）| - | IR | - |
+| [ksust,link:url=链接网址,title=标题文字,content=内容文字,pic=图片链接]  | 简单图文（卡片）| - | IR/CQ（Pro） | - |
 | [ksust,link2:url=链接网址,title=标题文字,content=内容文字,pic=图片链接,bcontent=内容2文字,bpic=大图链接] | 简单图文，加大图和长文本 |- | IR | - |
 | [ksust,at:qq=qq] | 统一标签，艾特某人。qq=all 或 qq=QQ号码。可跨平台兼容 | [ksust,at:qq=all] |IR/CQ |  - |
-| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ | - |
+| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ（Pro） | - |
 | [ksust,at_all:qq=all]  | 逐个@全体成员，避免@全体成员限制 | 固定用法 [ksust,at_all:qq=all] | IR | - |
 
 ### 数据结构
@@ -506,7 +617,7 @@ public class MsgForwardDemo {
 
 ## 插件界面及使用引导
 ---
-文档更新中...
+
 ### 用户使用流程引导
 对于使用本插件的用户来说，除了第一次配置插件外，几乎所有操作均在管理平台上进行（包括安装应用、查看机器人状态等）。   
 对于新用户，步骤如下：   
@@ -517,6 +628,10 @@ public class MsgForwardDemo {
 * 首先你需要至少登录成功一个机器人QQ。   
 * 对于CleverQQ，直接下载 HTTP-API.IR.DLL放入插件目录（plugin），然后启用插件即可。
 * 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CleverQQ。下载地址：[CleverQQ-HTTP-API](http://)
+>2.安装并启用插件（酷Q）
+* 首先你需要至少登录成功一个机器人QQ。   
+* 直接下载 com.ksust.qq.http-api.cpk放入插件目录（app），然后启用插件即可。
+* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CQ。下载地址：[CQ-HTTP-API](http://)
 >3.重启机器人框架
 * 上一步过后，请记得重启机器人，以获取授权码、载入新配置等。
 >4.打开插件设置进行配置
@@ -546,11 +661,11 @@ public class MsgForwardDemo {
 >开启开发者模式
 * 开启开发者模式
 >提交返回配置
-* 提交返回一般只需填提交URL即可，URL填HTTP协议地址（如http://127.0.0.1），或者填webSocket地址（如ws://127.0.0.1:2346），点击测试即可查看测试结果（测试发起的GET请求）。   
+* 提交返回一般只需填提交URL即可，URL填HTTP协议地址（如[http://127.0.0.1](http://127.0.0.1)），或者填webSocket地址（如ws://127.0.0.1:2346），点击测试即可查看测试结果（测试发起的GET请求）。   
 >主动推送配置
 * 主动提交一般只需开启服务，配置监听端口即可。   
 >定时任务配置
-* 定时任务只需开启服务并添加任务URL（只能是HTTP://XXX），填写任务间隔（秒）即可，任务间隔最小为1秒。   
+* 定时任务只需开启服务并添加任务URL（只能是[http://XXX](http://XXX)），填写任务间隔（秒）即可，任务间隔最小为1秒。   
 >发布应用到平台
 * 应用发布是针对已经认证开发者的开发者。可以在平台上发布开发的应用，用户可很方便地通过线上安装运行你的应用，另外开发者也可以通过这种方式获得收入（应用安装收费）。详情请加入开发群。
 
