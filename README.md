@@ -18,8 +18,8 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 ### 版本分布（来源）   
 |名称|最新版本|协议版本|状态|来源|备注|Demo地址|   
 |----|----|----|----|----|----|----|   
-|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|-|   
-|HTTP-API For CoolQ|2.2.2|2.2.2|兼容开发中...|标准|HTTP-API 酷Q cpk插件|-|   
+|HTTP-API For CleverQQ|2.2.2|2.2.2|已发布|标准|HTTP-API CleverQQ DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/HTTP-API.IR.dll)|   
+|HTTP-API For CoolQ|2.2.2|2.2.2|已发布|标准|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
 |HTTP-API PHP SDK|2.2.2|2.2.2|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API#php-demo)|   
 |HTTP-API Java SDK|2.2.2|2.2.2|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
 |HTTP-API Python SDK|2.2.2|2.2.2|已发布(Pypi)|标准|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#java-demo)|   
@@ -617,7 +617,7 @@ forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
 
 ## 插件界面及使用引导
 ---
-文档更新中...
+
 ### 用户使用流程引导
 对于使用本插件的用户来说，除了第一次配置插件外，几乎所有操作均在管理平台上进行（包括安装应用、查看机器人状态等）。   
 对于新用户，步骤如下：   
@@ -628,6 +628,10 @@ forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
 * 首先你需要至少登录成功一个机器人QQ。   
 * 对于CleverQQ，直接下载 HTTP-API.IR.DLL放入插件目录（plugin），然后启用插件即可。
 * 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CleverQQ。下载地址：[CleverQQ-HTTP-API](http://)
+>2.安装并启用插件（酷Q）
+* 首先你需要至少登录成功一个机器人QQ。   
+* 直接下载 com.ksust.qq.http-api.cpk放入插件目录（app），然后启用插件即可。
+* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CQ。下载地址：[CQ-HTTP-API](http://)
 >3.重启机器人框架
 * 上一步过后，请记得重启机器人，以获取授权码、载入新配置等。
 >4.打开插件设置进行配置
