@@ -4,10 +4,12 @@
  * User: yugao
  * Date: 2018/2/2
  * Time: 14:40
- * version 2.2.2
+ * version 2.3.0
  * Note: HTTPSDK for PHP(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
  * Contact: 开发者邮箱 admin@ksust.com
  */
+
+namespace ksust\http_api;
 header("Content-Type:text/html;Charset=utf8");//设置编码，必需
 class HTTPSDK
 {
@@ -411,6 +413,21 @@ class HTTPSDK
 
     /******************************接下来为具体功能，每添加一个功能就增加一条消息。****************************************************/
     /******************消息发送*************************/
+    /**
+     * 通用发送消息方法（为解决某些平台兼容问题）
+     * @param int $type 消息类型，见TypeEnum（如1为好友消息，2为群消息，3为讨论组消息，4为群临时消息等）
+     * @param string $group 群号
+     * @param string $qq QQ
+     * @param string $msg 消息内容
+     * @param int $structureType 消息结构类型 0普通消息，1 XML消息，2 JSON消息
+     * @param int $subType XML、JSON消息发送方式下：0为普通（默认），1为匿名（需要群开启）
+     * @return mixed
+     */
+    public function sendMsg($type, $group, $qq, $msg, $structureType = 0, $subType = 0)
+    {
+        return $this->addDataCell($type, $subType, $structureType, $group, $qq, $msg, '', 0);
+    }
+
     /**
      * 发送私聊消息
      * @param string $qq

@@ -4,10 +4,12 @@
  * User: yugao
  * Date: 2018/2/2
  * Time: 14:40
- * version 2.2.3
+ * version 2.3.0
  * Note: HTTPSDK for PHP(适用于版本2.2.2插件):用于解析插件消息、构造返回数据，以及HTTP推送（发起HTTP请求）
  * Contact: 开发者邮箱 admin@ksust.com
  */
+
+namespace ksust\http_api;
 header("Content-Type:text/html;Charset=utf8");//设置编码，必需
 class HTTPSDK
 {

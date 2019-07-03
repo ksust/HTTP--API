@@ -1,11 +1,15 @@
 <?php
+
+namespace ksust\http_api\demo;
 //websocket（结合使用workman）,插件的提交返回地址中配为相关地址（websocket://0.0.0.0:2346），命令行中启动本文件（php demo-ws.php restart）
 //workman下载地址：https://www.workerman.net/download/workermanzip
 header("Content-type:text/html;charset=utf-8");
-require_once __DIR__ . '/workman/Autoloader.php';
+include "../vendor/autoload.php";
+
+use ksust\http_api\HTTPSDK;
 use Workerman\Worker;
 
-require_once 'HTTPSDK.php';
+require_once '../HTTPSDK.php';
 // Create a Websocket server
 $ws_worker = new Worker("websocket://0.0.0.0:2346");
 // 4 processes
