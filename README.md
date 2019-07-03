@@ -141,7 +141,7 @@ Java SDK已经提交Maven中央仓库，直接在pom文件中配置。在pom中�
     <dependency>
         <groupId>com.ksust.qq</groupId>
         <artifactId>http-api-sdk</artifactId>
-        <version>2.2.2</version>
+        <version>2.3.0.RELEASE</version>
     </dependency>
 </dependencies>
 ```
