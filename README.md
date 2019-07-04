@@ -25,7 +25,7 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 |HTTP-API Java SDK|2.3.0|2.3.0|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
 |HTTP-API Python SDK|2.3.0|2.3.0|已发布(Pypi)|标准|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#python-demo)|   
 |HTTP-API NodeJS SDK|2.3.0|2.3.0|已发布(npm)|标准|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API#nodejs-demo)|   
-|HTTP-API Cloud API|v1|2.3.0|部署中...|标准|REST API|-|   
+|HTTP-API Cloud API|v1|2.3.0|部署中...|标准|REST API|[在线文档](https://www.kancloud.cn/ksust/cloud-api/1150005)|   
 |SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
 * **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
