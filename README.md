@@ -548,6 +548,7 @@ forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
 | [ksust,at:qq=qq] | 统一标签，艾特某人。qq=all 或 qq=QQ号码。可跨平台兼容 | [ksust,at:qq=all] |IR/CQ/QQLight |  - |
 | [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ（Pro）/QQLight | - |
 | [ksust,at_all:qq=all]  | 逐个@全体成员，避免@全体成员限制 | 固定用法 [ksust,at_all:qq=all] | IR | - |
+| [ksust,voice:url=mp3或amr语音文件网络地址]  | 发送语音消息 | [ksust,voice:url=http://hao.haolingsheng.com/ring/000/993/d915a1c149bb3076a32dfdab923f8c21.mp3] | QY | - |
 
 ### 数据结构
 简单列出必要的几种数据结构（使用**JSON格式**描述），其余请开发者在开发中查看SDK或者打印。
