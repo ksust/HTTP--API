@@ -1,4 +1,4 @@
-﻿﻿HTTP-API: CoolQ/CleverQQ Extensioin
+﻿﻿HTTP-API: CoolQ/QQLight/QY Extensioin
 ---
 
 扩展你的QQ/微信机器人用途，提供跨框架平台的PHP/Java/Python/NodeJS等编程语言SDK。   
@@ -8,9 +8,9 @@
 ## HTTP-API简介
 ---   
 HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socket等协议）与机器人进行通信的插件，主要提供PHP/Java/Python/NodeJS等编程语言SDK，以便将机器人用于WEB、大数据、机器学习等领域，尽可能地提现数据的价值。   
-目前插件主要支持CleverQQ机器人框架，并兼容酷Q机器人应用，开发者可以通过使用SDK非常方便地对机器人进行操作，比如控制机器人发送消息、公告，获取机器人群列表、好友列表，通过及监听获取近一个月、或者几年的聊天记录。开发者可通过简单的操作完成一些小程序、小应用对的开发，亦可应用于大型应用中。   
+目前插件主要支持酷Q、QQLight、契约机器人框架，开发者可以通过使用SDK非常方便地对机器人进行操作，比如控制机器人发送消息、公告，获取机器人群列表、好友列表，通过及监听获取近一个月、或者几年的聊天记录。开发者可通过简单的操作完成一些小程序、小应用对的开发，亦可应用于大型应用中。   
 此外，通过配合使用[WEB管理平台](http://work.ksust.com)，开发者可将自己开发的应用发布到应用商店中，通过用户安装的方式获得收入、使用数据等。用户可直接通过WEB平台安装、管理应用，以及可以批量管理机器人在线状态、收发消息等，让用户用最少的时间完成尽可能多的事。   
-**注：以下表格描述中CleverQQ简称IR，CoolQ（酷Q）简称CQ**   
+**注：以下表格描述中QQLight简称QL，CoolQ（酷Q）简称CQ，契约简称QY**   
 交流群：（QQ群，用户加入）537419179   
 开发群：（QQ群，开发者加入）598629636   
 管理平台：http://work.ksust.com   
@@ -18,14 +18,15 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 ### 版本分布（来源）   
 |名称|最新版本|协议版本|状态|来源|备注|Demo地址|   
 |----|----|----|----|----|----|----|   
-|HTTP-API For CleverQQ|2.3.0|2.3.0|已发布|标准|HTTP-API CleverQQ DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/HTTP-API.IR.dll)|   
-|HTTP-API For CoolQ|2.3.0|2.3.0|已发布|标准|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
-|HTTP-API For QQLight|2.3.0|2.3.0|已发布|标准|HTTP-API QQLight DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.plugin.dll)|   
-|HTTP-API PHP SDK|2.3.0|2.3.0|已发布|标准|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API#php-demo)|   
-|HTTP-API Java SDK|2.3.0|2.3.0|已发布(Maven)|标准|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
-|HTTP-API Python SDK|2.3.0|2.3.0|已发布(Pypi)|标准|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#python-demo)|   
-|HTTP-API NodeJS SDK|2.3.0|2.3.0|已发布(npm)|标准|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API#nodejs-demo)|   
-|HTTP-API Cloud API|v1|2.3.0|部署中...|标准|REST API|[在线文档](https://www.kancloud.cn/ksust/cloud-api/1150005)|   
+|HTTP-API For CleverQQ|2.3.0|2.3.0|已跑路|标准插件|HTTP-API CleverQQ DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/HTTP-API.IR.dll)|   
+|HTTP-API For CoolQ|2.3.2|2.3.2|已发布|标准插件|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
+|HTTP-API For QQLight|2.3.2|2.3.2|已发布|标准插件|HTTP-API QQLight 3.x插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.ql.dll)|   
+|HTTP-API For QY|2.3.2|2.3.2|已发布|标准插件|HTTP-API 契约多Q/单Q版|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.qyk.dll)|   
+|HTTP-API PHP SDK|2.3.0|2.3.0|已发布|标准SDK|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API#php-demo)|   
+|HTTP-API Java SDK|2.3.0|2.3.0|已发布(Maven)|标准SDK|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
+|HTTP-API Python SDK|2.3.0|2.3.0|已发布(Pypi)|标准SDK|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#python-demo)|   
+|HTTP-API NodeJS SDK|2.3.0|2.3.0|已发布(npm)|标准SDK|NodeJS SDK|[NodeJS Demo](https://github.com/ksust/HTTP--API#nodejs-demo)|   
+|HTTP-API Cloud API|v1|2.3.0|已发布|标准|REST API|[在线文档](https://www.kancloud.cn/ksust/cloud-api/1150005)|   
 |SDK Name|SDK版本|HTTP-API协议版本|完成状态...|来源，其他GITHub仓库|开发者备注|-|   
 * **注：允许开发者发布自己的SDK（参考标准SDK中HTTP-API协议）,若需要将SDK加入上述版本仓库，请联系admin@ksust.com**   
 
@@ -627,14 +628,10 @@ forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
 >1.注册平台账户（用于线上管理、安装）   
 * 至管理平台注册用户（用户名最好为英文）[http://work.ksust.com](http://work.ksust.com)   
 * 加入用户QQ群（用于应用审核等）：（QQ群，用户加入）537419179    
->2.安装并启用插件（CleverQQ）
+>2.安装并启用插件（QQLight、酷Q、契约）
 * 首先你需要至少登录成功一个机器人QQ。   
-* 对于CleverQQ，直接下载 HTTP-API.IR.DLL放入插件目录（plugin），然后启用插件即可。
-* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CleverQQ。下载地址：[CleverQQ-HTTP-API](http://)
->2.安装并启用插件（酷Q）
-* 首先你需要至少登录成功一个机器人QQ。   
-* 直接下载 com.ksust.qq.http-api.cpk放入插件目录（app），然后启用插件即可。
-* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的CQ。下载地址：[CQ-HTTP-API](http://)
+* 直接下载相应插件（本页开始的版本分布表中对应下载）。
+* 如果你是新用户，你可以再次直接下载已经安装好HTTP-API的机器人框架。下载地址：[QQLight-HTTP-API](http://)、[CQ-HTTP-API](http://)、[QY-HTTP-API](http://)   
 >3.重启机器人框架
 * 上一步过后，请记得重启机器人，以获取授权码、载入新配置等。
 >4.打开插件设置进行配置
