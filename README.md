@@ -19,9 +19,9 @@ HTTP-API是一款主要通过HTTP协议（另外也包含使用webSocket、socke
 |名称|最新版本|协议版本|状态|来源|备注|Demo地址|   
 |----|----|----|----|----|----|----|   
 |HTTP-API For CleverQQ|2.3.0|2.3.0|已跑路|标准插件|HTTP-API CleverQQ DLL插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/HTTP-API.IR.dll)|   
-|HTTP-API For CoolQ|2.3.2|2.3.2|已发布|标准插件|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
-|HTTP-API For QQLight|2.3.2|2.3.2|已发布|标准插件|HTTP-API QQLight 3.x插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.ql.dll)|   
-|HTTP-API For QY|2.3.2|2.3.2|已发布|标准插件|HTTP-API 契约多Q/单Q版|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.qyk.dll)|   
+|HTTP-API For CoolQ|2.3.6|2.3.6|已发布|标准插件|HTTP-API 酷Q cpk插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.cpk)|   
+|HTTP-API For QQLight|2.3.6|2.3.6|已发布|标准插件|HTTP-API QQLight 3.x插件|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.ql.dll)|   
+|HTTP-API For QY|2.3.6|2.3.6|已发布|标准插件|HTTP-API 契约多Q/单Q版|[插件下载](https://github.com/ksust/HTTP--API/blob/master/plugin/com.ksust.qq.http-api.qyk.dll)|   
 |HTTP-API PHP SDK|2.3.0|2.3.0|已发布|标准SDK|PHP SDK|[PHP Demo](https://github.com/ksust/HTTP--API#php-demo)|   
 |HTTP-API Java SDK|2.3.0|2.3.0|已发布(Maven)|标准SDK|Java SDK|[Java Demo](https://github.com/ksust/HTTP--API#java-demo)|   
 |HTTP-API Python SDK|2.3.0|2.3.0|已发布(Pypi)|标准SDK|Python SDK|[Python Demo](https://github.com/ksust/HTTP--API#python-demo)|   
@@ -546,11 +546,12 @@ forward.sendPrivateMsg('QQ', 'Hello').data(function (data) {
 | [ksust,music:name=歌曲名] | 多选音乐卡片，传入歌名 | [ksust,music:name=明天] |  IR | - |
 | [ksust,link:url=链接网址,title=标题文字,content=内容文字,pic=图片链接]  | 简单图文（卡片）| - | IR/CQ（Pro） | - |
 | [ksust,link2:url=链接网址,title=标题文字,content=内容文字,pic=图片链接,bcontent=内容2文字,bpic=大图链接] | 简单图文，加大图和长文本 |- | IR | - |
-| [ksust,at:qq=qq] | 统一标签，艾特某人。qq=all 或 qq=QQ号码。可跨平台兼容 | [ksust,at:qq=all] |IR/CQ/QQLight |  - |
-| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ（Pro）/QQLight | - |
-| [ksust,at_all:qq=all]  | 逐个@全体成员，避免@全体成员限制 | 固定用法 [ksust,at_all:qq=all] | IR | - |
+| [ksust,at:qq=qq] | 统一标签，艾特某人。qq=all 或 qq=QQ号码。可跨平台兼容 | [ksust,at:qq=all] |IR/CQ/QQLight/QY |  - |
+| [ksust,image:pic=图片地址]  | CQ、IRQQ统一网络图片标签，pic为网络图片地址，可跨平台兼容 | - | IR/CQ（Pro）/QQLight/QY | - |
+| [ksust,at_all:qq=all]  | 逐个@全体成员，避免@全体成员限制 | 固定用法 [ksust,at_all:qq=all] | IR/CQ/QQLight/QY | - |
 | [ksust,voice:url=mp3或amr语音文件网络地址]  | 发送语音消息 | [ksust,voice:url=http://hao.haolingsheng.com/ring/000/993/d915a1c149bb3076a32dfdab923f8c21.mp3] | QY | - |
-
+| [ksust,qqlight_group_file_forward:src=,dst_group=,guid=]  | 转发好友/群文件 | [ksust,qqlight_group_file_forward:src=好友QQ或群号,dst_group=目标群,guid=文件GUID]   | QQLight | - |
+| [ksust,qy_group_file:group=,group_path=,file_url=,name=]   | 上传群文件 | [ksust,qy_group_file:group=目标群号,group_path=群文件路径（根目录为/）,file_url=文件绝对链接（http://）,name=文件名称（如a.zip）]  | QY | - |
 ### 数据结构
 简单列出必要的几种数据结构（使用**JSON格式**描述），其余请开发者在开发中查看SDK或者打印。
 >提交返回-插件提交-数据结构（接口getMsg()返回值）
